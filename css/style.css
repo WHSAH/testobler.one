@@ -1,0 +1,96 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  background: #000;
+  overflow: hidden;
+}
+
+body {
+  background-image: url('../img/whsah.png');
+  background-repeat: repeat;
+}
+
+img {
+  user-drag: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+}
+
+.logo {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+}
+
+#blerone {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  max-width: 723px;
+  max-height: 312px;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  object-fit: contain;
+  animation: rainbow 30.059s linear infinite;
+}
+
+.tvt-screen {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+}
+
+#vial {
+  width: 4vw;
+  height: auto;
+  display: block;
+  image-rendering: pixelated;
+  animation: rainbow 19.891s linear infinite;
+}
+
+#bouncer {
+  position: fixed;
+  width: 4vw;
+  height: auto;
+  animation-composition: add;
+  animation:
+    bounceX 14.519s linear infinite alternate,
+    bounceY 10.657s linear infinite alternate;
+}
+
+@keyframes bounceX {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(100vw - 100%));
+  }
+}
+
+@keyframes bounceY {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(calc(100vh - 100%));
+  }
+}
+
+@keyframes rainbow {
+  from {
+    filter: sepia(1) saturate(6) hue-rotate(0deg);
+  }
+
+  to {
+    filter: sepia(1) saturate(6) hue-rotate(360deg);
+  }
+}
