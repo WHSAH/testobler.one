@@ -1,0 +1,102 @@
+/* CRT effect based on @Billgonzo123/CRT-Filter */
+
+@font-face {
+    font-family: "VT323";
+    font-weight: 400;
+    font-style: normal;
+    src: local("VT323"), url("/styles/VT323-Regular.ttf");
+}
+
+:root {
+    --phosphor: #FFFFFF;
+    --phosphor-bloom: rgb(from var(--phosphor) r g b / 0.95);
+}
+
+html {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+body {
+    color: var(--phosphor);
+    background-color: black;
+    background-image: radial-gradient(rgba(from var(--phosphor-bloom) r g b / 0.45), black 120%);
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    text-shadow: 0 0 0.8rem var(--phosphor-bloom);
+    font: 1.8rem "VT323", monospace;
+    overflow: hidden;
+}
+
+#main {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    white-space: nowrap;
+}
+
+.scanlines {
+    z-index: 3;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 110%;
+    height: 110%;
+    background-attachment: fixed;
+    pointer-events: none;
+}
+
+.R,
+.G,
+.B {
+    z-index: 4;
+    image-rendering: pixelated;
+    mix-blend-mode: darken;
+    pointer-events: none;
+}
+
+.R {
+    background: url(/img/R.png);
+}
+
+.G {
+    background: url(/img/G.png);
+}
+
+.B {
+    background: url(/img/B.png);
+}
+
+.mask {
+    pointer-events: none;
+    image-rendering: pixelated;
+    z-index: 1;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 110%;
+    height: 110%;
+    background: url(/img/mask.png);
+    background-size: 12px 12px;
+}
+
+#cursor {
+    display: inline-block;
+    transform-origin: left;
+    transform: scaleX(0.618);
+    animation: blink 1000ms steps(2, start) infinite;
+}
+
+@keyframes blink {
+    to {
+        visibility: hidden;
+    }
+}
